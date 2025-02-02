@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    "crispy_forms",
+    "crispy_bootstrap5",
+
     'to_do',
+    'todo_auth'
 ]
 
 MIDDLEWARE = [
@@ -123,7 +127,7 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / 'static'
 
-STATICFILES_DIRS = [BASE_DIR / 'assets'],
+STATICFILES_DIRS = [BASE_DIR / 'assets']
 
 MEDIA_URL = 'media/'
 
@@ -134,3 +138,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"

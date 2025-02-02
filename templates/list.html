@@ -1,5 +1,25 @@
 {% extends 'layouts/base.html' %}
 
 {% block content %}
+    {% for todo in todos %}
+        <div class="col-4 mb-3">
+            <div class="card">
+                <div class="card">
+                  <h5 class="card-header {% if todo.is_active %} bg-info {% else %} bg-danger {% endif %}">
+                      {% if todo.is_active %} <i class="bi bi-square"></i> {% else %} <i class="bi bi-x-square"></i> {% endif %}
+                  </h5>
+                  <div class="card-body">
+                    <h5 class="card-title">{{ todo.title|capfirst|truncatewords:'4' }}</h5>
+                    <p class="card-text">{{ todo.description|truncatewords:'4'|cut:" " }}</p>
+                    <p class="card-text">{{ todo.price }}</p>
+                      <div class="d-flex justify-content-around">
+                        <a href="{% url 'detail' id=todo.id %}" class="btn btn-primary"><i class=" bi bi-eye-fill me-2"></i>Show todo</a>
+                          <a href="{% url 'delete' id=todo.id %}" class="btn btn-outline-dark ms-auto"><i class="bi bi-trash-fill"></i></a>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 
 {% endblock %}

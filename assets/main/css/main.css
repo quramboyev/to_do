@@ -1,3 +1,10 @@
 .navbar-brand:hover i{
     color: burlywood;
 }
+body {
+    background-color: #052c65;
+}
+
+.bi-x-square, .bi-square {
+    color: white;
+}

@@ -15,8 +15,12 @@
 
     {% include 'layouts/navbar.html' %}
 
-    {% block content %}
-    {% endblock %}
+    <div class="container">
+        <div class="row">
+                {% block content %}
+                {% endblock %}
+        </div>
+    </div>
 
     {% block footer %}
 
