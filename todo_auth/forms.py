@@ -2,6 +2,17 @@ from django.contrib.auth.models import User
 from django import forms
 from django.core.exceptions import ValidationError
 
+class LoginForm(forms.Form):
+    username = forms.CharField(required=True, widget=forms.TextInput(attrs={
+        'placeholder': 'Username'
+    }))
+    password = forms.CharField(required=True, widget=forms.PasswordInput(attrs={
+        'placeholder': 'Password'
+    }))
+
+
+
+
 class RegistrationForm(forms.ModelForm):
     password2 = forms.CharField(
         required=True,

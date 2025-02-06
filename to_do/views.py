@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import CreateTodoForm, EditTodoForm
 from .models import ToDoModel
+from django.contrib.auth.decorators import login_required
 
+
+@login_required
 def todo_edit_view(request, id: int):
     obj = ToDoModel.objects.get(id=id)
     form = EditTodoForm(instance=obj)
@@ -15,17 +18,27 @@ def todo_edit_view(request, id: int):
     })
 
 def todo_list_view(request):
-    todos =ToDoModel.objects.all()
-    return render(request, 'list.html', context={
+    if request.user.is_authenticated:
+        q = request.GET.get('q', '')
+        todos =ToDoModel.objects.all().filter(user=request.user)    
+        if q:
+            todos = todos.filter(title__icontains=q)
+        return render(request, 'list.html', context={
         'todos': todos,
+        'q': q
     })
+    return render(request, 'list.html')
+    
 
+@login_required
 def todo_create_view(request):
     form = CreateTodoForm()
     if request.method == 'POST':
         form = CreateTodoForm(request.POST)
         if form.is_valid():
-            todo = ToDoModel(title=form.cleaned_data['title'], description=form.cleaned_data['description'])
+            todo = ToDoModel(title=form.cleaned_data['title'], 
+                             description=form.cleaned_data['description'], 
+                             user=request.user)
             todo.save()
             return redirect('list')
 
@@ -33,17 +46,19 @@ def todo_create_view(request):
         'form': form
     })
 
+@login_required
 def todo_delete_view(request, id:int):
     to_do = ToDoModel.objects.get(id=id)
     to_do.delete()
     return redirect('list')
 
+@login_required
 def todo_detail_view(request, id):
     to_do = ToDoModel.objects.get(id=id)
     return render(request, 'detail.html', context={
         'obj': to_do
     })
-
+@login_required
 def change_active_view(request, id):
     to_do = ToDoModel.objects.get(id=id)
     if to_do.is_active:
