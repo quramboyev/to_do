@@ -11,8 +11,6 @@ class LoginForm(forms.Form):
     }))
 
 
-
-
 class RegistrationForm(forms.ModelForm):
     password2 = forms.CharField(
         required=True,

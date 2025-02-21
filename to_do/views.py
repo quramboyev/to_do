@@ -58,6 +58,7 @@ def todo_detail_view(request, id):
     return render(request, 'detail.html', context={
         'obj': to_do
     })
+
 @login_required
 def change_active_view(request, id):
     to_do = ToDoModel.objects.get(id=id)

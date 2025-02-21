@@ -5,8 +5,6 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
 
 
-
-
 def registration_view(request):
     form = RegistrationForm()
     if request.method =='POST':
