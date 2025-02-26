@@ -1,0 +1,66 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-23 23:11+0500\n"
+"PO-Revision-Date: 2025-02-24 09:25+0500\n"
+"Last-Translator:   <>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.10.1\n"
+
+#: config/settings.py:124
+msgid "English"
+msgstr "English"
+
+#: config/settings.py:125
+msgid "Russian"
+msgstr "Russian"
+
+#: templates/layouts/navbar.html:22
+msgid "Home"
+msgstr "Home"
+
+#: templates/layouts/navbar.html:31
+msgid "Todo create"
+msgstr "Todo create"
+
+#: templates/layouts/navbar.html:49
+msgid "Login"
+msgstr "Login"
+
+#: templates/layouts/navbar.html:57
+msgid "Registration"
+msgstr "Registration"
+
+#: templates/layouts/navbar.html:65 templates/layouts/navbar.html:66
+msgid "Search"
+msgstr "Search"
+
+#: to_do/models.py:13
+msgid "title"
+msgstr "Title"
+
+#: to_do/models.py:14
+#, fuzzy
+#| msgid "Registration"
+msgid "description"
+msgstr "Registration"
+
+#: to_do/models.py:15
+msgid "price"
+msgstr "Price"
+
+#: to_do/models.py:16
+msgid "is_active"
+msgstr "Active"

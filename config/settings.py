@@ -10,7 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+
+import os
 from pathlib import Path
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +44,9 @@ INSTALLED_APPS = [
 
     "crispy_forms",
     "crispy_bootstrap5",
+    "ckeditor",
+    "rosetta",
+    "parler",
 
     'to_do',
     'todo_auth'
@@ -116,9 +122,20 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 
 LANGUAGES = [
-    ('en', 'English'),
-    ('ru', 'Russian'),
+    ('en', _('English')),
+    ('ru', _('Russian')),
 ]
+
+PARLER_LANGUAGES = {
+    None : (
+        {'code': 'en',},
+        {'code': 'ru',}
+    ),
+    'default': {
+        'fallbacks': ['en'],
+        'hide_untranslated': False,
+    }
+}
 
 TIME_ZONE = 'Asia/Tashkent'
 
@@ -136,6 +153,10 @@ STATIC_ROOT = BASE_DIR / 'static'
 
 STATICFILES_DIRS = [BASE_DIR / 'assets']
 
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+]
+
 MEDIA_URL = 'media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -149,10 +170,19 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+    },
+}
 
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
-    "site_title": "To do Admin",
+    "site_title": "My Admin",
 
     # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
     "site_header": "To do",
@@ -161,10 +191,10 @@ JAZZMIN_SETTINGS = {
     "site_brand": "To do",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": BASE_DIR / "assets/main/images/to-do-logo.png",
+    "site_logo": "/main/images/to-do-logo.png",
 
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
-    "login_logo": None,
+    "login_logo": "/main/images/img.png",
 
     # Logo to use for login form in dark themes (defaults to login_logo)
     "login_logo_dark": None,
@@ -173,7 +203,7 @@ JAZZMIN_SETTINGS = {
     "site_logo_classes": "img-circle",
 
     # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
-    "site_icon": None,
+    "site_icon": "/main/images/to-do-logo.png",
 
     # Welcome text on the login screen
     "welcome_sign": "Welcome to the To do",
@@ -183,7 +213,7 @@ JAZZMIN_SETTINGS = {
 
     # List of model admins to search from the search bar, search bar omitted if excluded
     # If you want to use a single search field you dont need to use a list, you can use a simple string 
-    "search_model": ["auth.User", "auth.Group"],
+    "search_model": ["to_do.ToDoModel"],
 
     # Field name on user model that contains avatar ImageField/URLField/Charfield or a callable that receives the user
     "user_avatar": None,

@@ -32,7 +32,7 @@ def login_view(request):
             )
         if user is not None:
             login(request, user)
-            return redirect('list')
+            return redirect('todo:list')
         form.add_error('password',"username yoki parol notogri")
 
     return render(request, 'login.html', context={
@@ -42,4 +42,4 @@ def login_view(request):
 @login_required
 def logout_view(request):
     logout(request)
-    return redirect('list')
+    return redirect('todo:list')

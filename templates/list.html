@@ -12,11 +12,11 @@
     </h5>
     <div class="card-body">
       <h5 class="card-title">{{ todo.title|capfirst|truncatewords:'4' }}</h5>
-      <p class="card-text">{{ todo.description|truncatewords:'4'|cut:" " }}</p>
-      <p class="card-text">{{ todo.price }}</p>add_error
+      <p class="card-text">{{ todo.description|truncatewords:'4'|cut:" "|safe }}</p>
+      <p class="card-text">{{ todo.price }}</p>
       <div class="d-flex justify-content-around">
-        <a href="{% url 'detail' id=todo.id %}" class="btn btn-primary"><i class=" bi bi-eye-fill me-2"></i>Show todo</a>
-        <a href="{% url 'delete' id=todo.id %}" class="btn btn-outline-dark ms-auto"><i class="bi bi-trash-fill"></i></a>
+        <a href="{% url 'todo:detail' id=todo.id %}" class="btn btn-primary"><i class=" bi bi-eye-fill me-2"></i>Show todo</a>
+        <a href="{% url 'todo:delete' id=todo.id %}" class="btn btn-outline-dark ms-auto"><i class="bi bi-trash-fill"></i></a>
       </div>
     </div>
   </div>

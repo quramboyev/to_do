@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+
 
 <nav class="navbar navbar-expand-lg bg-dark mb-3" data-bs-theme="dark">
   <div class="container">
@@ -17,7 +19,7 @@
             {% if request.path == list %}
              active  
             {% endif %} 
-          " aria-current="page" href="{% url 'list' %}">Home</a>
+          " aria-current="page" href="{% url 'todo:list' %}">{% trans "Home" %}</a>
         </li>
         {% if request.user.is_authenticated %}
         <li class="nav-item">
@@ -26,7 +28,7 @@
           {% if request.path == create %}
             active
           {% endif %}
-          " href="{% url 'create' %}">Todo create</a>
+          " href="{% url 'todo:create' %}">{% trans "Todo create" %}</a>
         </li>
         <li class="nav-item">
           {% url 'logout' as logout %}
@@ -44,7 +46,7 @@
             {% if request.path == login %}
              active  
             {% endif %} 
-          " aria-current="page" href="{% url 'login' %}">Login</a>
+          " aria-current="page" href="{% url 'login' %}">{% trans "Login" %}</a>
         </li>
         <li class="nav-item">
           {% url 'registration' as registration %}
@@ -52,7 +54,7 @@
               {% if request.path == registration %}
                active  
               {% endif %} 
-            " aria-current="page" href="{% url 'registration' %}">Registration</a>
+            " aria-current="page" href="{% url 'registration' %}">{% trans "Registration" %}</a>
         </li>
         {% endif %}
 
@@ -60,8 +62,8 @@
       </ul>
       {% if request.user.is_authenticated %}
         <form class="d-flex" role="search" method="get">
-          <input class="form-control me-2" name="q" type="search" placeholder="Search" value="{{ q }}" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <input class="form-control me-2" name="q" type="search" placeholder="{% trans "Search" %}" value="{{ q }}" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">{% trans "Search" %}</button>
         </form>
       {% endif %}
     </div>

@@ -9,14 +9,14 @@
             </div>
             <div class="card-body">
               <h5 class="card-title">{{ obj.title }}</h5>
-              <p class="card-text">{{ obj.description}}</p>
+              <p class="card-text">{{ obj.description|safe }}</p>
               <p class="card-text">{{ obj.price }}</p>
                 {% if obj.is_active %}
-                    <a href="{%  url 'change' id=obj.id %}" class="btn btn-primary"><i class="bi bi-x-square-fill"></i></a>
+                    <a href="{%  url 'todo:change' id=obj.id %}" class="btn btn-primary"><i class="bi bi-x-square-fill"></i></a>
                 {% else %}
-                    <a href="{% url 'change' id=obj.id %}" class="btn btn-primary"><i class="bi bi-check-square-fill"></i></a>
+                    <a href="{% url 'todo:change' id=obj.id %}" class="btn btn-primary"><i class="bi bi-check-square-fill"></i></a>
                 {% endif %}
-                <a href="{% url 'edit' id=obj.id %}" class="btn btn-primary"><i class="bi bi-pencil-fill "></i></a>
+                <a href="{% url 'todo:edit' id=obj.id %}" class="btn btn-primary"><i class="bi bi-pencil-fill "></i></a>
             </div>
             <div class="card-footer text-body-secondary">
               {{ obj.created_at|date:"d F Y" }} 

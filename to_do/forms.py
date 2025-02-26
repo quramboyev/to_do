@@ -1,6 +1,8 @@
 from string import digits
 from django import forms
 from .models import ToDoModel
+from ckeditor.widgets import CKEditorWidget
+
 
 class EditTodoForm(forms.ModelForm):
     text = forms.CharField(widget=forms.TextInput(attrs={
@@ -13,7 +15,7 @@ class EditTodoForm(forms.ModelForm):
         exclude = ['is_active']
         labels = {
             'title': "a",
-            'description': "descript",
+            'description': "description",
         }
         widgets = {
             'title': forms.Textarea(attrs={
@@ -25,6 +27,7 @@ class EditTodoForm(forms.ModelForm):
                 'placeholder': 'info'
             })
         }
+
 
 class CreateTodoForm(forms.Form):
      title = forms.CharField(max_length=100, min_length=3, label='Title', widget=forms.TextInput(
