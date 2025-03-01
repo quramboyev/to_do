@@ -5,9 +5,7 @@ from ckeditor.fields import RichTextField
 from django.utils.translation import gettext_lazy as _
 from parler.models import TranslatableModel, TranslatedFields
 
-
 User = get_user_model()
-
 
 class ToDoModel(TranslatableModel):
     translations = TranslatedFields(
@@ -28,3 +26,6 @@ class ToDoModel(TranslatableModel):
         verbose_name_plural = 'todos'
 
 
+class FakeModel(models.Model):
+    email = models.EmailField(_('email'))
+    text = models.TextField(_('text'))

@@ -1,7 +1,16 @@
 from django.shortcuts import render, redirect
-from .forms import CreateTodoForm, EditTodoForm
+from .forms import CreateTodoForm, EditTodoForm, FakeForm
 from .models import ToDoModel
 from django.contrib.auth.decorators import login_required
+
+
+def form_view(request):
+    if request.method == 'POST':
+        form = FakeForm(request.POST)  
+        if form.is_valid():
+            form.save() 
+            return redirect('todo:list')
+    return render(request, 'fakeform.html')
 
 
 @login_required
