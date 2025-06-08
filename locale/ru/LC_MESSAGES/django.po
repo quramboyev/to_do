@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-24 09:27+0500\n"
+"POT-Creation-Date: 2025-03-01 13:00+0500\n"
 "PO-Revision-Date: 2025-02-24 09:28+0500\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,14 +16,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Translated-Using: django-rosetta 0.10.1\n"
 
-#: config/settings.py:124
+#: config/settings.py:125
 msgid "English"
 msgstr "Английский"
 
-#: config/settings.py:125
+#: config/settings.py:126
 msgid "Russian"
 msgstr "Русский"
 
@@ -47,22 +49,34 @@ msgstr "Регистрация"
 msgid "Search"
 msgstr "Поиск"
 
-#: to_do/models.py:13
+#: to_do/models.py:12
 msgid "title"
 msgstr "Титуль"
 
-#: to_do/models.py:14
+#: to_do/models.py:13
 #, fuzzy
 #| msgid "Registration"
 msgid "description"
 msgstr "Регистрация"
 
-#: to_do/models.py:15
+#: to_do/models.py:14
 msgid "price"
 msgstr "Цена"
 
-#: to_do/models.py:16
+#: to_do/models.py:15
 #, fuzzy
 #| msgid "is_actove"
 msgid "is_active"
 msgstr "Активный"
+
+#: to_do/models.py:30
+msgid "email"
+msgstr ""
+
+#: to_do/models.py:31
+msgid "text"
+msgstr ""
+
+#: to_do/models.py:32
+msgid "img"
+msgstr ""

@@ -8,9 +8,10 @@ class FakeForm(forms.ModelForm):
         model = FakeModel
         labels = {
             'text': 'Text',
-            'email': 'Email'
+            'email': 'Email',
+            'img': 'Image'
         }
-        fields = ['email', 'text']
+        fields = ['email', 'text', 'img']
         widgets = {
             'text': forms.Textarea(attrs={
                 'class': 'bg-secondary', 

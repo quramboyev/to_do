@@ -1,0 +1,9 @@
+{% extends "layouts/base.html" %}
+{% load my_tags %}
+
+{% block content %}
+<div class="col-8 offset-2"> 
+    {{ text|test }}
+    {{ obj|new_filter|safe }}
+</div>
+{% endblock %}

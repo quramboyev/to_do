@@ -22,12 +22,47 @@
   </div>
 </div>
 {% endfor %}
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+  {% if todos.has_previous %}
+    <li class="page-item {% if not todos.has_previous %}disabled{% endif %}">
+        {% if todos.has_previous %}
+            <a class="page-link" href="?q={{ q }}&page={{ todos.previous_page_number }}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            </a>
+        {% else %}
+            <span class="page-link" aria-hidden="true">&laquo;</span>
+      {% endif %}
+    </li>
+    {% endif %}
+   {% for num in todos.paginator.page_range %}
+      <li class="page-item {% if todos.number == num %}active{% endif %}">
+        <a class="page-link" href="?q={{ q }}&page={{ num }}">{{ num }}</a>
+      </li>
+    {% endfor %}
+  {% if todos.has_next %}
+    <li class="page-item {% if not todos.has_next %}disabled{% endif %}">
+      {% if todos.has_next %}
+        <a class="page-link" href="?q={{ q }}&page={{ todos.next_page_number }}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      {% else %}
+        <span class="page-link" aria-hidden="true">&raquo;</span>
+      {% endif %}
+    </li>
+  {% endif %}
+  </ul>
+</nav>
 {% else %}
-<div class="fontp d-flex w-100 justify-content-center">
-  <img src="{% static 'main/images/todo.png' %}" alt="">
+<div class="d-flex justify-content-center align-items-center" style="height: 400px; background: linear-gradient(135deg, #e0f7fa, #80deea); border-radius: 16px; margin: 2rem 0;">
+  <div class="text-center">
+    <h2 class="fw-bold text-dark">Добро пожаловать в ToDo App!</h2>
+    <p class="text-secondary">Пожалуйста, <a href="{% url 'login' %}">войдите</a> или <a href="{% url 'registration' %}">зарегистрируйтесь</a>, чтобы управлять своими задачами.</p>
+  </div>
 </div>
+
+
 {% endif %}
-
-
 
 {% endblock %}

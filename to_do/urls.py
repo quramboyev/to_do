@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import todo_list_view, todo_create_view, todo_delete_view, todo_detail_view, \
-    change_active_view, todo_edit_view, form_view
+    change_active_view, todo_edit_view, form_view, fake_view
 
 app_name = "todo"
 
@@ -13,5 +13,6 @@ urlpatterns = [
     path('detail/<int:id>/', todo_detail_view, name="detail"),
     path('change/<int:id>/', change_active_view, name='change'),
     path('edit/<int:id>/', todo_edit_view, name='edit'),
-    path('fake/', form_view, name='fakeform'),
+    path('form/', form_view, name='fakeform'),
+    path('fake/', fake_view, name='fake')
 ]

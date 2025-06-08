@@ -1,16 +1,26 @@
 from django.shortcuts import render, redirect
 from .forms import CreateTodoForm, EditTodoForm, FakeForm
-from .models import ToDoModel
+from .models import ToDoModel, FakeModel
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+def fake_view(request):
+    obj = FakeModel.objects.get(id=5)
+    text = "Hello world"
+    return render(request, 'fake.html', context={
+        'obj':obj,
+        'text': text
+    })
 
 def form_view(request):
     if request.method == 'POST':
-        form = FakeForm(request.POST)  
+        form = FakeForm(request.POST, request.FILES)  
         if form.is_valid():
             form.save() 
             return redirect('todo:list')
-    return render(request, 'fakeform.html')
+    return render(request, 'fakeform.html', context={
+        'form': form
+    })
 
 
 @login_required
@@ -26,18 +36,35 @@ def todo_edit_view(request, id: int):
         'form': form
     })
 
+
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 def todo_list_view(request):
     if request.user.is_authenticated:
         q = request.GET.get('q', '')
-        todos =ToDoModel.objects.all().filter(user=request.user)
+        todos = ToDoModel.objects.filter(user=request.user)
         if q:
             todos = todos.filter(title__icontains=q)
+
+        paginator = Paginator(todos, 6)
+        page = request.GET.get('page')
+
+        try:
+            todos_page = paginator.page(page)
+        except PageNotAnInteger:
+            todos_page = paginator.page(1)
+        except EmptyPage:
+            todos_page = paginator.page(paginator.num_pages)
+
         return render(request, 'list.html', context={
-        'todos': todos,
-        'q': q
-    })
+            'todos': todos_page,
+            'q': q
+        })
+
     return render(request, 'list.html')
-    
+
+
+
 
 @login_required
 def todo_create_view(request):
@@ -79,4 +106,5 @@ def change_active_view(request, id):
 
     to_do.save()
     return redirect('todo:detail', id=id)
+
 
