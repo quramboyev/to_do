@@ -93,16 +93,32 @@ SOCIALACCOUNT_PROVIDERS = {
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'my_todo',
+#         'USER': 'root',
+#         'PASSWORD': 'quramboyev17',
+#         'HOST': 'localhost',
+#         'PORT': '3306'
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'my_todo',
-        'USER': 'root',
-        'PASSWORD': 'quramboyev17',
-        'HOST': 'localhost',
-        'PORT': '3306'
+        'NAME': os.environ.get("DB_NAME", "todo_db"),
+        'USER': os.environ.get("DB_USER", "todo_user"),
+        'PASSWORD': os.environ.get("DB_PASSWORD", "secret123"),
+        'HOST': os.environ.get("DB_HOST", "localhost"),
+        'PORT': '3306',
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            'use_unicode': True,
+        }
     }
 }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
